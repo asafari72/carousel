@@ -1,7 +1,12 @@
-<ng-content></ng-content>
+<div class="ax-carousel">
+    <ng-content></ng-content>
+    <div class="ax-carousel-arrow ax-next-arrow" (click)="nextItemClick()">
+        <i class="{{rightArrow}}"></i>
+    </div>
+    <div class="ax-carousel-arrow ax-prev-arrow" (click)="prevItemClick()">
+        <i class="{{leftArrow}}"></i>
+    </div>
+</div>
 
-
-
-
-<button (click)="nextItem()">Next</button>
-<button (click)="prevItem()">Prev</button>
+<button (click)="nextItemClick()">Next</button>
+<button (click)="prevItemClick()">Prev</button>

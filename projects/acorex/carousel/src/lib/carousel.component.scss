@@ -1,0 +1,25 @@
+.ax-carousel {
+    position: relative;
+    width: fit-content;
+    width: moz-fit-content;
+    .ax-carousel-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #fff;
+        width: 35px;
+        height: 35px;
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        &.ax-next-arrow {
+            right: 5px;
+        }
+        &.ax-prev-arrow {
+            left: 5px;
+        }
+    }
+}

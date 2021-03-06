@@ -29,15 +29,31 @@ export class AXCarouselComponent {
   @Input()
   infinitLoop: boolean = true;
 
+  @Input()
+  rightArrow: string = 'fas fa-chevron-right';
+
+  @Input()
+  leftArrow: string = 'fas fa-chevron-left';
+
   selectedIndex;
+  interval: any;
 
   ngAfterContentInit(): void {
-    this.automaticStart();
+    this.init();
+  }
+
+  init() {
+    if (this.autoStart) {
+      this.automaticStart();
+    } else {
+      this.contents.get(this.firstIndex).visible = true;
+    }
   }
 
   automaticStart() {
     if (this.autoStart) {
-      setInterval(() => {
+      this.contents.get(this.firstIndex).visible = true;
+      this.interval = setInterval(() => {
         this.nextItem();
       }, this.duration);
     }
@@ -69,5 +85,14 @@ export class AXCarouselComponent {
       this.contents.forEach((c) => (c.visible = false));
       this.contents.last.visible = true;
     }
+  }
+
+  nextItemClick() {
+    this.nextItem();
+    clearInterval(this.interval);
+  }
+  prevItemClick() {
+    this.prevItem();
+    clearInterval(this.interval);
   }
 }
