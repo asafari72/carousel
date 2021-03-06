@@ -122,6 +122,46 @@
           }
         }
       }
+    },
+    "@acorex/carousel": {
+      "projectType": "library",
+      "root": "projects/acorex/carousel",
+      "sourceRoot": "projects/acorex/carousel/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/acorex/carousel/tsconfig.lib.json",
+            "project": "projects/acorex/carousel/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/acorex/carousel/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/acorex/carousel/src/test.ts",
+            "tsConfig": "projects/acorex/carousel/tsconfig.spec.json",
+            "karmaConfig": "projects/acorex/carousel/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/acorex/carousel/tsconfig.lib.json",
+              "projects/acorex/carousel/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "carousel"

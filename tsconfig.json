@@ -2,6 +2,12 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "@acorex/carousel": [
+        "dist/acorex/carousel/acorex-carousel",
+        "dist/acorex/carousel"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
