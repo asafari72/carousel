@@ -18,6 +18,9 @@ export class AXCarouselComponent {
   contents: QueryList<AXCarouselItemComponent>;
 
   @Input()
+  numberToShow: number = 1;
+
+  @Input()
   firstIndex: number = 0;
 
   @Input()
@@ -46,7 +49,13 @@ export class AXCarouselComponent {
     if (this.autoStart) {
       this.automaticStart();
     } else {
-      this.contents.get(this.firstIndex).visible = true;
+      if (this.numberToShow == 1) {
+        this.contents.get(this.firstIndex).visible = true;
+      } else {
+        for (let i = 0; i < this.numberToShow; i++) {
+          this.contents.get(i).visible = true;
+        }
+      }
     }
   }
 
