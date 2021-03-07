@@ -3,6 +3,8 @@
     width: fit-content;
     width: moz-fit-content;
     display: flex;
+    flex-direction: column;
+
     .ax-carousel-arrow {
         position: absolute;
         top: 50%;
@@ -21,6 +23,19 @@
         }
         &.ax-prev-arrow {
             left: 5px;
+        }
+    }
+    .ax-carousel-dots {
+        display: flex;
+        justify-content: center;
+        padding: 5px 0;
+        .ax-carousel-dot {
+            width: 10px;
+            height: 10px;
+            background: #d6d6d6;
+            border-radius: 50px;
+            margin: 0 2px;
+            cursor: pointer;
         }
     }
 }

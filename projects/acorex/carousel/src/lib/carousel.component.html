@@ -1,12 +1,15 @@
-<div class="ax-carousel">
+<div class="ax-carousel {{cssClass}}">
     <ng-content></ng-content>
-    <div class="ax-carousel-arrow ax-next-arrow" (click)="nextItemClick()">
+    <div class="ax-carousel-arrow ax-next-arrow {{arrowClass}}" (click)="nextItemClick()" *ngIf="showArrows">
         <i class="{{rightArrow}}"></i>
     </div>
-    <div class="ax-carousel-arrow ax-prev-arrow" (click)="prevItemClick()">
+    <div class="ax-carousel-arrow ax-prev-arrow {{arrowClass}}" (click)="prevItemClick()" *ngIf="showArrows">
         <i class="{{leftArrow}}"></i>
     </div>
-</div>
+    <div class="ax-carousel-dots" *ngIf="showDots">
+        <ng-container *ngFor="let item of contents">
+            <div class="ax-carousel-dot" [ngStyle]="setDotStyles(item)" (click)="onDotClick(item)"></div>
+        </ng-container>
 
-<button (click)="nextItemClick()">Next</button>
-<button (click)="prevItemClick()">Prev</button>
+    </div>
+</div>

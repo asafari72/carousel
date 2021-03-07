@@ -2,11 +2,12 @@ import { AXCarouselItemComponent } from './carousel-item.component';
 import {
   Component,
   ContentChildren,
+  ElementRef,
   Input,
   OnInit,
   QueryList,
+  ViewChild,
 } from '@angular/core';
-import './prototype';
 @Component({
   selector: 'ax-carousel',
   templateUrl: './carousel.component.html',
@@ -17,8 +18,7 @@ export class AXCarouselComponent {
   @ContentChildren(AXCarouselItemComponent)
   contents: QueryList<AXCarouselItemComponent>;
 
-  @Input()
-  numberToShow: number = 1;
+  @ViewChild('carousel') carousel: ElementRef<HTMLDivElement>;
 
   @Input()
   firstIndex: number = 0;
@@ -38,6 +38,21 @@ export class AXCarouselComponent {
   @Input()
   leftArrow: string = 'fas fa-chevron-left';
 
+  @Input()
+  dotColor: string = '#000';
+
+  @Input()
+  showDots: boolean = true;
+
+  @Input()
+  showArrows: boolean = false;
+
+  @Input()
+  cssClass: string;
+
+  @Input()
+  arrowClass: string;
+
   selectedIndex;
   interval: any;
 
@@ -49,13 +64,7 @@ export class AXCarouselComponent {
     if (this.autoStart) {
       this.automaticStart();
     } else {
-      if (this.numberToShow == 1) {
-        this.contents.get(this.firstIndex).visible = true;
-      } else {
-        for (let i = 0; i < this.numberToShow; i++) {
-          this.contents.get(i).visible = true;
-        }
-      }
+      this.contents.get(this.firstIndex).visible = true;
     }
   }
 
@@ -100,8 +109,22 @@ export class AXCarouselComponent {
     this.nextItem();
     clearInterval(this.interval);
   }
+
   prevItemClick() {
     this.prevItem();
     clearInterval(this.interval);
+  }
+
+  onDotClick(item: AXCarouselItemComponent) {
+    this.contents.forEach((c) => (c.visible = false));
+    item.visible = true;
+    clearInterval(this.interval);
+  }
+
+  setDotStyles(item: AXCarouselItemComponent) {
+    let styles = {
+      'background-color': item.visible ? this.dotColor : '#d6d6d6',
+    };
+    return styles;
   }
 }

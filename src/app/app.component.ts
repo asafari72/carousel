@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'carousel';
 
-  autoStart: boolean = false;
+  autoStart: boolean = true;
 }
